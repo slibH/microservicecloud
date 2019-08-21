@@ -3,9 +3,9 @@ package com.hxy.springcloud.service.impl;
 import com.hxy.springcloud.dao.DeptDao;
 import com.hxy.springcloud.entities.Dept;
 import com.hxy.springcloud.service.DeptService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Service
 public class DeptServiceImpl implements DeptService {
-    @Autowired
+    @Resource
     private DeptDao deptDao;
 
     @Override
