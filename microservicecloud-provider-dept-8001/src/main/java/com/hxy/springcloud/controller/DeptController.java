@@ -3,12 +3,15 @@ package com.hxy.springcloud.controller;
 import com.hxy.springcloud.entities.Dept;
 import com.hxy.springcloud.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -22,8 +25,8 @@ import java.util.List;
 public class DeptController {
     @Autowired
     private DeptService service;
-    /*@Autowired
-    private DiscoveryClient client;*/
+    @Resource
+    private DiscoveryClient client;
 
     @RequestMapping(value = "/dept/add", method = RequestMethod.POST)
     public boolean add(@RequestBody Dept dept)
@@ -43,10 +46,7 @@ public class DeptController {
         return service.list();
     }
 
-
-    //	@Autowired
-//	private DiscoveryClient client;
-   /* @RequestMapping(value = "/dept/discovery", method = RequestMethod.GET)
+    @RequestMapping(value = "/dept/discovery", method = RequestMethod.GET)
     public Object discovery()
     {
         List<String> list = client.getServices();
@@ -58,5 +58,5 @@ public class DeptController {
                     + element.getUri());
         }
         return this.client;
-    }*/
+    }
 }
